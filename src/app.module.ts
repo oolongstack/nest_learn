@@ -15,6 +15,7 @@ import { DogController } from './dog/dog.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -27,7 +28,7 @@ import { User } from './user/entities/user.entity';
       port: 3306,
       username: 'root',
       password: '2000101abc',
-      database: 'typeorm_test',
+      database: 'login_test',
       synchronize: true,
       logging: true,
       entities: [User],
@@ -38,6 +39,13 @@ import { User } from './user/entities/user.entity';
       },
     }),
     UserModule,
+    JwtModule.register({
+      global: true,
+      secret: 'cjl',
+      signOptions: {
+        expiresIn: '7d',
+      },
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

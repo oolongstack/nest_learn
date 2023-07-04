@@ -3,7 +3,6 @@ import {
   Module,
   NestModule,
   OnApplicationShutdown,
-  RequestMethod,
 } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -16,11 +15,18 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
+import { PermissionModule } from './permission/permission.module';
+import { Permission } from './permission/entities/permission.entity';
+import { AaaModule } from './aaa/aaa.module';
+import { BbbModule } from './bbb/bbb.module';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [
     CatModule,
     DogModule,
+    AaaModule,
+    BbbModule,
     DynamiModule.register({ name: 'dynamic module' }),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -28,10 +34,10 @@ import { JwtModule } from '@nestjs/jwt';
       port: 3306,
       username: 'root',
       password: '2000101abc',
-      database: 'login_test',
+      database: 'acl_test',
       synchronize: true,
       logging: true,
-      entities: [User],
+      entities: [User, Permission],
       poolSize: 10,
       connectorPackage: 'mysql2',
       extra: {
@@ -46,6 +52,8 @@ import { JwtModule } from '@nestjs/jwt';
         expiresIn: '7d',
       },
     }),
+    PermissionModule,
+    RedisModule,
   ],
   controllers: [AppController],
   providers: [AppService],

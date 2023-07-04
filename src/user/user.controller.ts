@@ -26,6 +26,12 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
   @Inject(JwtService)
   private jwtService: JwtService;
+
+  @Get('init')
+  init() {
+    this.userService.initData();
+  }
+
   @Post('login')
   async login(
     @Body(ValidationPipe) user: LoginDto,

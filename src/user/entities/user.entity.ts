@@ -1,7 +1,10 @@
+import { Permission } from 'src/permission/entities/permission.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -34,4 +37,10 @@ export class User {
     comment: '更新时间',
   })
   updateTime: Date;
+
+  @ManyToMany(() => Permission)
+  @JoinTable({
+    name: 'user_permission_relation',
+  })
+  permissions: Permission[];
 }

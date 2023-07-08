@@ -28,7 +28,7 @@ export class AaaController {
   @Get()
   @UseGuards(LoginGuard, PermissionGuard)
   // 设置元数据 （这个接口只能是 拥有query_aaa权限的用户才能调用）
-  @SetMetadata('permission', 'query_bbb')
+  @SetMetadata('permission', 'query_aaa')
   findAll() {
     return this.aaaService.findAll();
   }

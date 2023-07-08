@@ -14,7 +14,6 @@ import { RedisService } from './redis/redis.service';
 export class PermissionGuard implements CanActivate {
   @Inject(UserService)
   private userService: UserService;
-
   @Inject(RedisService)
   private redisService: RedisService;
   @Inject(Reflector)

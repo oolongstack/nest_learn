@@ -20,6 +20,7 @@ import { Permission } from './permission/entities/permission.entity';
 import { AaaModule } from './aaa/aaa.module';
 import { BbbModule } from './bbb/bbb.module';
 import { RedisModule } from './redis/redis.module';
+import { LPipeModule } from './l_pipe/l_pipe.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { RedisModule } from './redis/redis.module';
     }),
     PermissionModule,
     RedisModule,
+    LPipeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
